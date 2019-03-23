@@ -16,3 +16,5 @@ Optional parameters
 
 -p # if you are reading from a zipfile then the parameter specifies the a password to enter if one is needed otherwise leave it blank.
 
+Price vs total_ratings based on primary genre
+
