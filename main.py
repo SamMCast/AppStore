@@ -32,18 +32,8 @@ def extractFile(zFile, maxattempts, passwd, filename):
 
     return datafile
 
-def groupbyratingtotal(datapoint, ratingList):
-    # We are going to assume the list is sorted
 
-    prevRate = 0
-    for rateBlock in ratingList:
-        if prevRate < datapoint <= rateBlock:
-            return rateBlock , True
-        prevRate = rateBlock
-
-    return prevRate, False
-
-def main():
+def checkUserInput():
     numOfargs = len(sys.argv)
 
     parser = optparse.OptionParser(usage="%prog -f <data filename> -p <zipfile password>")
@@ -65,18 +55,22 @@ def main():
         ShouldPrompt = True
     
     if not os.path.isfile(dataFile):
-        print('[-] {0} doesn\'t exit.'. format(dataFile))
-        exit(2)
+        exitmessage = '[-] ' + str(dataFile) + 'doesn\'t exit.\n'
+        sys.exit(exitmessage)
 
     if not os.access(dataFile, os.R_OK):
-        print("[-] {0} access denied.". format(dataFile))
-        exit(2)
+        exitmessage= "[-] " + str(dataFile) + " access denied.\n"
+        sys.exit(exitmessage)
 
     fileExt = os.path.splitext(dataFile)[-1]
 
     maxattempts = 1
 
-    if fileExt == '.zip' or fileExt == '.csv':
+    if fileExt != '.zip' and fileExt != '.csv':
+        exitmessage = "[-] Wrong file format.\n"
+        sys.exit(exitmessage)
+    
+    else:
         if fileExt == '.zip':
             zFile = zipfile.ZipFile(dataFile)
             if ShouldPrompt == True and passwd == None:
@@ -91,8 +85,37 @@ def main():
 
             dataFile = extractFile(zFile, maxattempts, passwd, dataFile)
 
-    else:
-        print("[-] Wrong file format.")
+    return dataFile        
+
+
+def groupbyratingtotal(datapoint, ratingList):
+    """
+    Classify a datapoint based on rating totals interval and returns an interval where the data point lies 
+
+    Keyword arguments:
+    datapoint  -- the data point we are considering
+    ratingList -- a numerical list containing data intervals used for the purposes for classifying
+
+    returns a tuple of the min and max interval in which the data point lies
+    """
+    # We are going to assume the list is sorted
+
+    prevRate = ratingList[0]
+    for rateBlock in ratingList[1:]:
+        if prevRate < datapoint <= rateBlock:
+            return str(prevRate)+ "-" + str(rateBlock) + " rating count" , True
+        prevRate = rateBlock
+
+    return str(prevRate), False
+
+def main():
+    #validate the user input
+    dataFile = checkUserInput()
+
+    AppHeader, mobileAppData = readData(dataFile)
+
+    #Only consider Apps from the 
+
 
 
 if __name__ == "__main__":
