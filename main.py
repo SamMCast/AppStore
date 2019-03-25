@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-from csv import reader
-from collections import defaultdict 
 import optparse
 import os
 import zipfile
@@ -31,6 +29,17 @@ def extractFile(zFile, maxattempts, passwd, filename):
             attempts -=1
 
     return datafile
+
+def groupbyratingtotal(datapoint, ratingList):
+    # We are going to assume the list is sorted
+
+    prevRate = 0
+    for rateBlock in ratingList:
+        if prevRate < datapoint <= rateBlock:
+            return rateBlock , True
+        prevRate = rateBlock
+
+    return prevRate, False
 
 def main():
     numOfargs = len(sys.argv)
