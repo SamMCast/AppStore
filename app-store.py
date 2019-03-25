@@ -1,5 +1,4 @@
 from csv import reader
-from collections import defaultdict 
 
 
 
@@ -18,15 +17,29 @@ def findAverage(appsData):
 
 def extractColumn(key, appsData):
 
-    columndata = [int(x[key]) for x in range(appsData)]
+    columndata = [x[key] for x in range(appsData)]
 
     return columndata
 
 
-def defineDataIntervals(appsData, block):
-    interval = appsData//block
+def defineDataIntervals(appsData,key, block,min_data_set=None):
 
-    AppsData = [x*interval for x in range(1, block+1)]
+    columndata = extractColumn(key, appsData)
+    columndata = [float(x) for x in columndata]
+
+    if(min_data_set==None):
+        min_data_set = min(columndata)
+        
+    max_data_set = max(columndata)
+
+    interval = (max_data_set - min_data_set)/block
+
+    AppsData = [min_data_set]
+    curr = 0
+
+    while(AppsData[curr]+interval < max_data_set):
+        curr+=1
+        AppsData[curr]+=interval
 
     return AppsData
 
@@ -37,7 +50,25 @@ def dataFilter(appsData, filterRule):
 
     return appDataFilter
 
-def createFrequencyTable(keylist, appsData, freqRule, updatefrq):
+
+def extractDataProportion(freqTable, datalegnth=None):
+    if(datalegnth == None):
+        datalegnth = 0
+        for key in freqTable:
+            datalegnth += freqTable[key]
+    
+    for key in freqTable:
+        freqTable[key]/=datalegnth
+    
+
+def extractDataPercentage(freqTable, datalegnth = None):
+    
+    extractDataProportion(freqTable, datalegnth)
+    for key in freqTable:
+        freqTable[key]*=100
+    
+    
+def createFrequencyTable(keylist, appsData, freqRule):
     freqTable = {}
 
     for datapoint in appsData:

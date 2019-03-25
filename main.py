@@ -3,6 +3,7 @@ import optparse
 import os
 import zipfile
 import sys
+from collections import defaultdict 
 
 def extractFile(zFile, maxattempts, passwd, filename):
     attempts = 0
