@@ -9,7 +9,7 @@ I will restrict the data to only consider apps using US currency, that only supp
 
 I will be looking at apps with highest total ratings and then I will look at price and possibly another feature to exame the correlation it has on average rating.
 
-The data was retrieved from kaggle at https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps
+The data was retrieved from [kaggle](https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps)
 
 MobileAppStore  # The program
 
@@ -20,42 +20,42 @@ Optional parameters
 
 ## Content:
 ### appleStore.csv
-"id" : App ID
+- "id" : App ID
 
-"track_name": App Name
+- "track_name": App Name
 
-"size_bytes": Size (in Bytes)
+- "size_bytes": Size (in Bytes)
 
-"currency": Currency Type
+- "currency": Currency Type
 
-"price": Price amount
+- "price": Price amount
 
-"rating_count_tot": User Rating counts (for all version)
+- "rating_count_tot": User Rating counts (for all version)
 
-"rating_count_ver": User Rating counts (for current version)
+- "rating_count_ve"r": User Rating counts (for current version)
 
-"user_rating" : Average User Rating value (for all version)
+- "user_rating" : Average User Rating value (for all version)
 
-"user_rating_ver": Average User Rating value (for current version)
+- "user_rating_ver": Average User Rating value (for current version)
 
-"ver" : Latest version code
+- "ver" : Latest version code
 
-"cont_rating": Content Rating
+- "cont_rating": Content Rating
 
-"prime_genre": Primary Genre
+- "prime_genre": Primary Genre
 
-"sup_devices.num": Number of supporting devices
+- "sup_devices.num": Number of supporting devices
 
-"ipadSc_urls.num": Number of screenshots showed for display
+- "ipadSc_urls.num": Number of screenshots showed for display
 
-"lang.num": Number of supported languages
+- "lang.num": Number of supported languages
 
-"vpp_lic": Vpp Device Based Licensing Enabled
+- "vpp_lic": Vpp Device Based Licensing Enabled
 
 ### appleStore_description.csv
-id : App ID
-track_name: Application name
-size_bytes: Memory size (in Bytes)
-app_desc: Application description
+1. id : App ID
+2. track_name: Application name
+3. size_bytes: Memory size (in Bytes)
+4. app_desc: Application description
 
 

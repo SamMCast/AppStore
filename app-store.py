@@ -1,7 +1,5 @@
 from csv import reader
 
-
-
 def readline(file):
     with open(file) as cvsfile:
         appsreader = reader(cvsfile)
@@ -29,7 +27,7 @@ def defineDataIntervals(appsData,key, block,min_data_set=None):
 
     if(min_data_set==None):
         min_data_set = min(columndata)
-        
+
     max_data_set = max(columndata)
 
     interval = (max_data_set - min_data_set)/block
