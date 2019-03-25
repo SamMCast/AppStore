@@ -7,7 +7,7 @@ I want to know how much does price, average rating, Primary Genre affect the tot
 
 I will restrict the data to only consider apps using US currency, that only supports one language. However, I will consider all versions of the app
 
-I will be looking at apps with highest total ratings and then I will look at price and possibly another feature to exame the correlation it has on average rating.
+I will be looking at apps with highest total ratings and then I will look at price and content rating to examine the correlation it has on average rating.
 
 The data was retrieved from [kaggle](https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps)
 
@@ -20,37 +20,10 @@ Optional parameters
 
 ## Content:
 ### appleStore.csv
-- "id" : App ID
 
-- "track_name": App Name
-
-- "size_bytes": Size (in Bytes)
-
-- "currency": Currency Type
-
-- "price": Price amount
-
-- "rating_count_tot": User Rating counts (for all version)
-
-- "rating_count_ve"r": User Rating counts (for current version)
-
-- "user_rating" : Average User Rating value (for all version)
-
-- "user_rating_ver": Average User Rating value (for current version)
-
-- "ver" : Latest version code
-
-- "cont_rating": Content Rating
-
-- "prime_genre": Primary Genre
-
-- "sup_devices.num": Number of supporting devices
-
-- "ipadSc_urls.num": Number of screenshots showed for display
-
-- "lang.num": Number of supported languages
-
-- "vpp_lic": Vpp Device Based Licensing Enabled
+| id | track_name | size_bytes | currency | price | rating_count_tot | rating_count_ve"r | user_rating | user_rating_ver | ver | cont_rating | prime_genre | sup_devices.num | ipadSc_urls.num | lang.num | vpp_lic |
+| -- | ---------- | ---------- | -------- | ----- | ---------------- | ----------------- | ----------- | --------------- | --- | ----------- | ----------- | --------------- | --------------- | -------- | ------- |
+| App ID | App Name | Size (in Bytes) | Currency Type | Price amount | User Rating counts (for all version) | User Rating counts (for current version) | Average User Rating value (for all version) | Average User Rating value (for current version) | Latest version code | Content Rating | Primary Genre | Number of supporting devices | Number of screenshots showed for display | Number of supported languages | Vpp Device Based Licensing Enabled |
 
 ### appleStore_description.csv
 1. id : App ID

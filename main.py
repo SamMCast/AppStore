@@ -4,6 +4,7 @@ import os
 import zipfile
 import sys
 from collections import defaultdict 
+from app_store import *
 
 def extractFile(zFile, maxattempts, passwd, filename):
     attempts = 0
@@ -74,20 +75,24 @@ def main():
     fileExt = os.path.splitext(dataFile)[-1]
 
     maxattempts = 1
-    if fileExt == '.zip':
-        zFile = zipfile.ZipFile(dataFile)
-        if ShouldPrompt == True and passwd == None:
-            passwd = input("Looks like you provided a zip file, if the zip file is password protected enter the password otherwise press return: ").strip()
-            passwd = str.encode(passwd)
 
-            if not passwd:
-                passwd = None
+    if fileExt == '.zip' or fileExt == '.csv':
+        if fileExt == '.zip':
+            zFile = zipfile.ZipFile(dataFile)
+            if ShouldPrompt == True and passwd == None:
+                passwd = input("Looks like you provided a zip file, if the zip file is password protected enter the password otherwise press return: ").strip()
+                passwd = str.encode(passwd)
 
-        if ShouldPrompt == True and passwd == None or passwd != None:
-            maxattempts = 5
+                if not passwd:
+                    passwd = None
 
-        dataFile = extractFile(zFile, maxattempts, passwd, dataFile)
+            if ShouldPrompt == True and passwd == None or passwd != None:
+                maxattempts = 5
 
+            dataFile = extractFile(zFile, maxattempts, passwd, dataFile)
+
+    else:
+        print("[-] Wrong file format.")
 
 
 if __name__ == "__main__":
